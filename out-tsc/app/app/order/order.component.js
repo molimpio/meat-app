@@ -7,32 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-var MenuItemComponent = (function () {
-    function MenuItemComponent() {
-        this.add = new EventEmitter();
+import { Component } from '@angular/core';
+var OrderComponent = (function () {
+    function OrderComponent() {
+        this.paymentOptions = [
+            { label: "Dinheiro", value: "MON" },
+            { label: "Cartão de Débito", value: "DEB" },
+            { label: "Cartão Refeição", value: "REF" },
+        ];
     }
-    MenuItemComponent.prototype.ngOnInit = function () {
+    OrderComponent.prototype.ngOnInit = function () {
     };
-    MenuItemComponent.prototype.emitAddEvent = function () {
-        this.add.emit(this.menuItem);
-    };
-    return MenuItemComponent;
+    return OrderComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], MenuItemComponent.prototype, "menuItem", void 0);
-__decorate([
-    Output(),
-    __metadata("design:type", Object)
-], MenuItemComponent.prototype, "add", void 0);
-MenuItemComponent = __decorate([
+OrderComponent = __decorate([
     Component({
-        selector: 'mt-menu-item',
-        templateUrl: './menu-item.component.html'
+        selector: 'mt-order',
+        templateUrl: './order.component.html'
     }),
     __metadata("design:paramtypes", [])
-], MenuItemComponent);
-export { MenuItemComponent };
-//# sourceMappingURL=menu-item.component.js.map
+], OrderComponent);
+export { OrderComponent };
+//# sourceMappingURL=order.component.js.map
