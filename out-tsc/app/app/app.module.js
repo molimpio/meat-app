@@ -28,6 +28,7 @@ import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OrderService } from "./order/order.service";
+import { DeliveryConstsComponent } from './order/delivery-consts/delivery-consts.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -50,7 +51,8 @@ AppModule = __decorate([
             OrderComponent,
             InputComponent,
             RadioComponent,
-            OrderItemsComponent
+            OrderItemsComponent,
+            DeliveryConstsComponent
         ],
         imports: [
             BrowserModule,
