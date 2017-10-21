@@ -8,8 +8,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { OrderService } from "./order.service";
 var OrderComponent = (function () {
-    function OrderComponent() {
+    function OrderComponent(orderService) {
+        this.orderService = orderService;
         this.paymentOptions = [
             { label: "Dinheiro", value: "MON" },
             { label: "Cartão de Débito", value: "DEB" },
@@ -18,6 +20,18 @@ var OrderComponent = (function () {
     }
     OrderComponent.prototype.ngOnInit = function () {
     };
+    OrderComponent.prototype.cartItems = function () {
+        return this.orderService.cartItems();
+    };
+    OrderComponent.prototype.increaseQty = function (item) {
+        this.orderService.increaseQty(item);
+    };
+    OrderComponent.prototype.decreaseQty = function (item) {
+        this.orderService.decreaseQty(item);
+    };
+    OrderComponent.prototype.remove = function (item) {
+        this.orderService.remove(item);
+    };
     return OrderComponent;
 }());
 OrderComponent = __decorate([
@@ -25,7 +39,7 @@ OrderComponent = __decorate([
         selector: 'mt-order',
         templateUrl: './order.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [OrderService])
 ], OrderComponent);
 export { OrderComponent };
 //# sourceMappingURL=order.component.js.map

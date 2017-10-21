@@ -23,17 +23,17 @@
         </div>
         <div class="col-sm-6 col-xs-12">
           <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Endereço">
-            <input class="form-control" name="address" ngModel required minlength="5" autocomplete="off" />
+            <input class="form-control" name="address" ngModel required minlength="5" autocomplete="off"/>
           </mt-input-container>
         </div>
         <div class="col-sm-3 col-xs-6">
           <mt-input-container errorMessage="Campo obrigatório e somente números" label="Número">
-            <input class="form-control" name="number" pattern="`/^[0-9]*$/`" ngModel required autocomplete="off" />
+            <input class="form-control" name="number" pattern="`/^[0-9]*$/`" ngModel required autocomplete="off"/>
           </mt-input-container>
         </div>
         <div class="col-sm-3 col-xs-6">
           <mt-input-container>
-            <input class="form-control" name="optional" ngModel autocomplete="off" />
+            <input class="form-control" name="optional" ngModel autocomplete="off"/>
           </mt-input-container>
         </div>
         <!-- /.col -->
@@ -46,7 +46,11 @@
           <p class="lead">Itens do Pedido:</p>
         </div>
 
-        <mt-order-items></mt-order-items>
+        <mt-order-items [items]="cartItems()"
+                        (increaseQty)="increaseQty($event)"
+                        (decreaseQty)="decreaseQty($event)"
+                        (remove)="remove($event)">
+        </mt-order-items>
         <!-- /.col -->
       </div>
       <!-- /.row -->
@@ -60,40 +64,43 @@
             <mt-radio [options]="paymentOptions" name="paymentOption" ngModel></mt-radio>
           </div>
 
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-6 col-xs-12">
-        <p class="lead">Frete e Total:</p>
-
-        <div class="table-responsive">
-          <table class="table">
-            <tbody><tr>
-              <th style="width:50%">Itens:</th>
-              <td class="text-right">R$ 20,00</td>
-            </tr>
-            <tr>
-              <th>Frete:</th>
-              <td class="text-right">R$ 8,00</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td class="text-right">R$ 28,00</td>
-            </tr>
-          </tbody></table>
         </div>
+        <!-- /.col -->
+        <div class="col-sm-6 col-xs-12">
+          <p class="lead">Frete e Total:</p>
+
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+              <tr>
+                <th style="width:50%">Itens:</th>
+                <td class="text-right">R$ 20,00</td>
+              </tr>
+              <tr>
+                <th>Frete:</th>
+                <td class="text-right">R$ 8,00</td>
+              </tr>
+              <tr>
+                <th>Total:</th>
+                <td class="text-right">R$ 28,00</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /.col -->
       </div>
-      <!-- /.col -->
+
+    </form>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <button [disabled]="!form.valid" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir
+          Pedido
+        </button>
+      </div>
     </div>
 
-  </form>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <button [disabled]="!form.valid" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir Pedido
-      </button>
-    </div>
-  </div>
-
-</section>
+  </section>
 </section>
 <!-- FIM DO CONTEUDO-->
