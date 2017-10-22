@@ -69,18 +69,19 @@
         <div class="col-sm-6 col-xs-12">
           <p class="lead">Frete e Total:</p>
 
-            <mt-delivery-consts></mt-delivery-consts>
+            <mt-delivery-costs [delivery]="delivery"
+              [itemsValue]="itemsValue()">
+            </mt-delivery-costs>
 
           </div>
         </div>
-        <!-- /.col -->
-      </div>
 
     </form>
 
     <div class="row">
       <div class="col-xs-12">
-        <button [disabled]="!form.valid" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir
+        <button [disabled]="!form.valid || cartItems.lenght === 0" 
+          class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir
           Pedido
         </button>
       </div>
