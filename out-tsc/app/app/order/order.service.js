@@ -8,11 +8,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from "@angular/core";
+import { Http, Headers, RequestOptions } from "@angular/http";
+import 'rxjs/add/operator/map';
 import { ShoppingCartService } from "../restaurant-detail/shopping-cart/shopping-cart.service";
+import { MEAT_API } from '../app.api';
 var OrderService = (function () {
-    function OrderService(cartService) {
+    function OrderService(cartService, http) {
         this.cartService = cartService;
+        this.http = http;
     }
+    OrderService.prototype.itemsValue = function () {
+        return this.cartService.total();
+    };
     OrderService.prototype.cartItems = function () {
         return this.cartService.items;
     };
@@ -25,11 +32,21 @@ var OrderService = (function () {
     OrderService.prototype.remove = function (item) {
         this.cartService.removeItem(item);
     };
+    OrderService.prototype.clear = function () {
+        this.cartService.clear();
+    };
+    OrderService.prototype.checkOrder = function (order) {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(MEAT_API + "/orders", JSON.stringify(order), new RequestOptions({ headers: headers }))
+            .map(function (response) { return response.json(); })
+            .map(function (order) { return order.id; });
+    };
     return OrderService;
 }());
 OrderService = __decorate([
     Injectable(),
-    __metadata("design:paramtypes", [ShoppingCartService])
+    __metadata("design:paramtypes", [ShoppingCartService, Http])
 ], OrderService);
 export { OrderService };
 //# sourceMappingURL=order.service.js.map
