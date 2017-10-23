@@ -10,12 +10,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
 import { RatingComponent } from './rating/rating.component';
-var SharedModule = (function () {
+import { ShoppingCartService } from "../restaurant-detail/shopping-cart/shopping-cart.service";
+import { RestaurantsService } from "../restaurants/restaurants.service";
+import { OrderService } from "../order/order.service";
+var SharedModule = SharedModule_1 = (function () {
     function SharedModule() {
     }
+    SharedModule.forRoot = function () {
+        return {
+            ngModule: SharedModule_1,
+            providers: [ShoppingCartService, RestaurantsService, OrderService]
+        };
+    };
     return SharedModule;
 }());
-SharedModule = __decorate([
+SharedModule = SharedModule_1 = __decorate([
     NgModule({
         declarations: [InputComponent, RadioComponent, RatingComponent],
         imports: [CommonModule, FormsModule, ReactiveFormsModule],
@@ -24,4 +33,5 @@ SharedModule = __decorate([
     })
 ], SharedModule);
 export { SharedModule };
+var SharedModule_1;
 //# sourceMappingURL=shared.module.js.map
