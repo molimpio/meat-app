@@ -13,6 +13,7 @@ import { RatingComponent } from './rating/rating.component';
 import { ShoppingCartService } from "../restaurant-detail/shopping-cart/shopping-cart.service";
 import { RestaurantsService } from "../restaurants/restaurants.service";
 import { OrderService } from "../order/order.service";
+import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 var SharedModule = SharedModule_1 = (function () {
     function SharedModule() {
     }
@@ -26,9 +27,9 @@ var SharedModule = SharedModule_1 = (function () {
 }());
 SharedModule = SharedModule_1 = __decorate([
     NgModule({
-        declarations: [InputComponent, RadioComponent, RatingComponent],
+        declarations: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
         imports: [CommonModule, FormsModule, ReactiveFormsModule],
-        exports: [InputComponent, RadioComponent, RatingComponent,
+        exports: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent,
             CommonModule, FormsModule, ReactiveFormsModule]
     })
 ], SharedModule);
