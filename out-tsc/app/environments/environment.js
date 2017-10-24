@@ -4,6 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 // The file contents for the current environment will overwrite these during build.
 export var environment = {
-    production: false
+    production: false,
+    api: 'http://localhost:3000'
 };
 //# sourceMappingURL=environment.js.map
