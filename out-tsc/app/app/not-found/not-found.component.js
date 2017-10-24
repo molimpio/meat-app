@@ -8,22 +8,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-var OrderSummaryComponent = (function () {
-    function OrderSummaryComponent() {
+var NotFoundComponent = (function () {
+    function NotFoundComponent() {
     }
-    OrderSummaryComponent.prototype.ngOnInit = function () {
+    NotFoundComponent.prototype.ngOnInit = function () {
     };
-    OrderSummaryComponent.prototype.rate = function () {
-        this.rated = true;
-    };
-    return OrderSummaryComponent;
+    return NotFoundComponent;
 }());
-OrderSummaryComponent = __decorate([
+NotFoundComponent = __decorate([
     Component({
-        selector: 'mt-order-summary',
-        templateUrl: './order-summary.component.html'
+        selector: 'mt-not-found',
+        templateUrl: './not-found.component.html'
     }),
     __metadata("design:paramtypes", [])
-], OrderSummaryComponent);
-export { OrderSummaryComponent };
-//# sourceMappingURL=order-summary.component.js.map
+], NotFoundComponent);
+export { NotFoundComponent };
+//# sourceMappingURL=not-found.component.js.map

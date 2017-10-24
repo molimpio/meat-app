@@ -22,6 +22,7 @@ import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.compo
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,7 +41,8 @@ AppModule = __decorate([
             ShoppingCartComponent,
             MenuItemComponent,
             ReviewsComponent,
-            OrderSummaryComponent
+            OrderSummaryComponent,
+            NotFoundComponent
         ],
         imports: [
             BrowserModule,
