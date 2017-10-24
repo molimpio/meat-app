@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations'
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 
 import {Restaurant} from './restaurant/restaurant.model'
 import {RestaurantsService} from './restaurants.service'
+
+import 'rxjs/add/operator/switchMap'
 
 @Component({
   selector: 'mt-restaurants',
@@ -24,18 +27,32 @@ import {RestaurantsService} from './restaurants.service'
 })
 export class RestaurantsComponent implements OnInit {
 
+  searchForm: FormGroup
+  searchControl: FormControl
   searchBarState: string = 'hidden'
   restaurants: Restaurant[]
 
-  constructor(private restaurantsService: RestaurantsService) { }
+  constructor(private restaurantsService: RestaurantsService,
+    private fb: FormBuilder) { }
 
-  ngOnInit() {
-    this.restaurantsService.restaurants()
-      .subscribe(restaurants => this.restaurants = restaurants)
-  }
+    ngOnInit() {
 
-  toggleSearch() {
-    this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden'
-  }
+      this.searchControl = this.fb.control('')
+      this.searchForm = this.fb.group({
+        searchControl: this.searchControl
+      })
 
-}
+      this.searchControl.valueChanges
+      .switchMap(searchTerm =>
+        this.restaurantsService.restaurants(searchTerm))
+        .subscribe(restaurants => this.restaurants = restaurants)
+
+        this.restaurantsService.restaurants()
+        .subscribe(restaurants => this.restaurants = restaurants)
+      }
+
+      toggleSearch() {
+        this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden'
+      }
+
+    }
