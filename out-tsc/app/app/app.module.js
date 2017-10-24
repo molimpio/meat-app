@@ -9,6 +9,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -52,6 +53,7 @@ AppModule = __decorate([
             RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
         ],
         providers: [
+            { provide: LocationStrategy, useClass: HashLocationStrategy },
             { provide: LOCALE_ID, useValue: 'pt-BR' }
         ],
         bootstrap: [AppComponent]
