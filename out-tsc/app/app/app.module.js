@@ -23,39 +23,41 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './security/login/login.component';
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        NgModule({
+            declarations: [
+                AppComponent,
+                HeaderComponent,
+                HomeComponent,
+                RestaurantsComponent,
+                RestaurantComponent,
+                RestaurantDetailComponent,
+                MenuComponent,
+                ShoppingCartComponent,
+                MenuItemComponent,
+                ReviewsComponent,
+                OrderSummaryComponent,
+                NotFoundComponent,
+                LoginComponent
+            ],
+            imports: [
+                BrowserModule,
+                BrowserAnimationsModule,
+                HttpClientModule,
+                SharedModule.forRoot(),
+                RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
+            ],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'pt-BR' }
+            ],
+            bootstrap: [AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    NgModule({
-        declarations: [
-            AppComponent,
-            HeaderComponent,
-            HomeComponent,
-            RestaurantsComponent,
-            RestaurantComponent,
-            RestaurantDetailComponent,
-            MenuComponent,
-            ShoppingCartComponent,
-            MenuItemComponent,
-            ReviewsComponent,
-            OrderSummaryComponent,
-            NotFoundComponent
-        ],
-        imports: [
-            BrowserModule,
-            BrowserAnimationsModule,
-            HttpClientModule,
-            SharedModule.forRoot(),
-            RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
-        ],
-        providers: [
-            { provide: LOCALE_ID, useValue: 'pt-BR' }
-        ],
-        bootstrap: [AppComponent]
-    })
-], AppModule);
 export { AppModule };
 //# sourceMappingURL=app.module.js.map

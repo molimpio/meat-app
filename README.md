@@ -44,7 +44,7 @@ Dependências dos pacotes que devem ficar em package.json:
 ## na pasta /backend rodar: tsc --watch
 
 ## subir Servidor
-## na pasta raiz do projeto rodar: nodemon backend/dist/server.js
+## na pasta raiz do projeto rodar: nodemon --watch backend backend/dist/server.js
 
 ```
 "dependencies": {

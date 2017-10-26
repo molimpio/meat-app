@@ -46,11 +46,11 @@ var ShoppingCartService = (function () {
             .map(function (item) { return item.value(); })
             .reduce(function (prev, value) { return prev + value; }, 0);
     };
+    ShoppingCartService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [NotificationService])
+    ], ShoppingCartService);
     return ShoppingCartService;
 }());
-ShoppingCartService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [NotificationService])
-], ShoppingCartService);
 export { ShoppingCartService };
 //# sourceMappingURL=shopping-cart.service.js.map

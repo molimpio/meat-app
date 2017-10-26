@@ -8,19 +8,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-var AboutComponent = (function () {
-    function AboutComponent() {
+var LoginComponent = (function () {
+    function LoginComponent() {
     }
-    AboutComponent.prototype.ngOnInit = function () {
+    LoginComponent.prototype.ngOnInit = function () {
     };
-    AboutComponent = __decorate([
+    LoginComponent = __decorate([
         Component({
-            selector: 'mt-about',
-            templateUrl: './about.component.html'
+            selector: 'mt-login',
+            templateUrl: './login.component.html',
+            styleUrls: ['./login.component.css']
         }),
         __metadata("design:paramtypes", [])
-    ], AboutComponent);
-    return AboutComponent;
+    ], LoginComponent);
+    return LoginComponent;
 }());
-export { AboutComponent };
-//# sourceMappingURL=about.component.js.map
+export { LoginComponent };
+//# sourceMappingURL=login.component.js.map

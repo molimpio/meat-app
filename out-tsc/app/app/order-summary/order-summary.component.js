@@ -16,14 +16,14 @@ var OrderSummaryComponent = (function () {
     OrderSummaryComponent.prototype.rate = function () {
         this.rated = true;
     };
+    OrderSummaryComponent = __decorate([
+        Component({
+            selector: 'mt-order-summary',
+            templateUrl: './order-summary.component.html'
+        }),
+        __metadata("design:paramtypes", [])
+    ], OrderSummaryComponent);
     return OrderSummaryComponent;
 }());
-OrderSummaryComponent = __decorate([
-    Component({
-        selector: 'mt-order-summary',
-        templateUrl: './order-summary.component.html'
-    }),
-    __metadata("design:paramtypes", [])
-], OrderSummaryComponent);
 export { OrderSummaryComponent };
 //# sourceMappingURL=order-summary.component.js.map

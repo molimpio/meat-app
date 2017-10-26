@@ -13,14 +13,14 @@ var NotFoundComponent = (function () {
     }
     NotFoundComponent.prototype.ngOnInit = function () {
     };
+    NotFoundComponent = __decorate([
+        Component({
+            selector: 'mt-not-found',
+            templateUrl: './not-found.component.html'
+        }),
+        __metadata("design:paramtypes", [])
+    ], NotFoundComponent);
     return NotFoundComponent;
 }());
-NotFoundComponent = __decorate([
-    Component({
-        selector: 'mt-not-found',
-        templateUrl: './not-found.component.html'
-    }),
-    __metadata("design:paramtypes", [])
-], NotFoundComponent);
 export { NotFoundComponent };
 //# sourceMappingURL=not-found.component.js.map

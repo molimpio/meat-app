@@ -28,29 +28,29 @@ var SnackbarComponent = (function () {
         }).switchMap(function (message) { return Observable.timer(3000); })
             .subscribe(function (timer) { return _this.snackVisibility = 'hidden'; });
     };
+    SnackbarComponent = __decorate([
+        Component({
+            selector: 'mt-snackbar',
+            templateUrl: './snackbar.component.html',
+            styleUrls: ['./snackbar.component.css'],
+            animations: [
+                trigger('snack-visibility', [
+                    state('hidden', style({
+                        opacity: 0,
+                        bottom: '0px'
+                    })),
+                    state('visible', style({
+                        opacity: 1,
+                        bottom: '30px'
+                    })),
+                    transition('hidden => visible', animate('500ms 0s ease-in')),
+                    transition('visible => hidden', animate('500ms 0s ease-out')),
+                ])
+            ]
+        }),
+        __metadata("design:paramtypes", [NotificationService])
+    ], SnackbarComponent);
     return SnackbarComponent;
 }());
-SnackbarComponent = __decorate([
-    Component({
-        selector: 'mt-snackbar',
-        templateUrl: './snackbar.component.html',
-        styleUrls: ['./snackbar.component.css'],
-        animations: [
-            trigger('snack-visibility', [
-                state('hidden', style({
-                    opacity: 0,
-                    bottom: '0px'
-                })),
-                state('visible', style({
-                    opacity: 1,
-                    bottom: '30px'
-                })),
-                transition('hidden => visible', animate('500ms 0s ease-in')),
-                transition('visible => hidden', animate('500ms 0s ease-out')),
-            ])
-        ]
-    }),
-    __metadata("design:paramtypes", [NotificationService])
-], SnackbarComponent);
 export { SnackbarComponent };
 //# sourceMappingURL=snackbar.component.js.map

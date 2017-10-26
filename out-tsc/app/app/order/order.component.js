@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from "./order.service";
 import { OrderItem } from "./order.model";
-var OrderComponent = OrderComponent_1 = (function () {
+var OrderComponent = (function () {
     function OrderComponent(orderService, router, formBuilder) {
         this.orderService = orderService;
         this.router = router;
@@ -26,6 +26,7 @@ var OrderComponent = OrderComponent_1 = (function () {
             { label: "Cartão Refeição", value: "REF" },
         ];
     }
+    OrderComponent_1 = OrderComponent;
     OrderComponent.prototype.ngOnInit = function () {
         this.orderForm = this.formBuilder.group({
             name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
@@ -73,17 +74,17 @@ var OrderComponent = OrderComponent_1 = (function () {
             _this.orderService.clear();
         });
     };
+    OrderComponent = OrderComponent_1 = __decorate([
+        Component({
+            selector: 'mt-order',
+            templateUrl: './order.component.html'
+        }),
+        __metadata("design:paramtypes", [OrderService,
+            Router,
+            FormBuilder])
+    ], OrderComponent);
     return OrderComponent;
+    var OrderComponent_1;
 }());
-OrderComponent = OrderComponent_1 = __decorate([
-    Component({
-        selector: 'mt-order',
-        templateUrl: './order.component.html'
-    }),
-    __metadata("design:paramtypes", [OrderService,
-        Router,
-        FormBuilder])
-], OrderComponent);
 export { OrderComponent };
-var OrderComponent_1;
 //# sourceMappingURL=order.component.js.map
