@@ -40,6 +40,12 @@ Expressões regulares usadas na validação de formulários
 
 Dependências dos pacotes que devem ficar em package.json:
 
+## compilar typescript em javascript
+## na pasta /backend rodar: tsc --watch
+
+## subir Servidor
+## na pasta raiz do projeto rodar: nodemon backend/dist/server.js
+
 ```
 "dependencies": {
     "@angular/animations": "4.3.3",
