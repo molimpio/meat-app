@@ -8,10 +8,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from "@angular/forms";
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(fb) {
+        this.fb = fb;
     }
     LoginComponent.prototype.ngOnInit = function () {
+        this.loginForm = this.fb.group({
+            email: this.fb.control('', [Validators.required, Validators.email]),
+            password: this.fb.control('', [Validators.required]),
+        });
     };
     LoginComponent = __decorate([
         Component({
@@ -19,7 +25,7 @@ var LoginComponent = (function () {
             templateUrl: './login.component.html',
             styleUrls: ['./login.component.css']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [FormBuilder])
     ], LoginComponent);
     return LoginComponent;
 }());
