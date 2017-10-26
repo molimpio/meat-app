@@ -9,9 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
+import { LoginService } from "./login.service";
 var LoginComponent = (function () {
-    function LoginComponent(fb) {
+    function LoginComponent(fb, loginService) {
         this.fb = fb;
+        this.loginService = loginService;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginForm = this.fb.group({
@@ -19,13 +21,17 @@ var LoginComponent = (function () {
             password: this.fb.control('', [Validators.required]),
         });
     };
+    LoginComponent.prototype.login = function () {
+        this.loginService.login(this.loginForm.value.email, this.loginForm.value.password)
+            .subscribe(function (user) { return console.log(user); });
+    };
     LoginComponent = __decorate([
         Component({
             selector: 'mt-login',
             templateUrl: './login.component.html',
             styleUrls: ['./login.component.css']
         }),
-        __metadata("design:paramtypes", [FormBuilder])
+        __metadata("design:paramtypes", [FormBuilder, LoginService])
     ], LoginComponent);
     return LoginComponent;
 }());
