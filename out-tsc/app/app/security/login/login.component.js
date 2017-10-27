@@ -8,20 +8,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from "./login.service";
 import { NotificationService } from "../../shared/messages/notification.service";
 var LoginComponent = (function () {
-    function LoginComponent(fb, loginService, notificationService) {
+    function LoginComponent(fb, loginService, notificationService, activatedRoute, router) {
         this.fb = fb;
         this.loginService = loginService;
         this.notificationService = notificationService;
+        this.activatedRoute = activatedRoute;
+        this.router = router;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginForm = this.fb.group({
             email: this.fb.control('', [Validators.required, Validators.email]),
             password: this.fb.control('', [Validators.required]),
         });
+        this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -30,6 +34,8 @@ var LoginComponent = (function () {
             return _this.notificationService.notify("Bem vindo, " + user.name);
         }, function (response) {
             return _this.notificationService.notify(response.error.message);
+        }, function () {
+            _this.router.navigate([atob(_this.navigateTo)]);
         });
     };
     LoginComponent = __decorate([
@@ -40,7 +46,9 @@ var LoginComponent = (function () {
         }),
         __metadata("design:paramtypes", [FormBuilder,
             LoginService,
-            NotificationService])
+            NotificationService,
+            ActivatedRoute,
+            Router])
     ], LoginComponent);
     return LoginComponent;
 }());

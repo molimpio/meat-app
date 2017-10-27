@@ -8,12 +8,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from "@angular/core";
+import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
 import { MEAT_API } from "../../app.api";
 var LoginService = (function () {
-    function LoginService(http) {
+    function LoginService(http, router) {
+        var _this = this;
         this.http = http;
+        this.router = router;
+        this.router.events.filter(function (e) { return e instanceof NavigationEnd; })
+            .subscribe(function (e) { return _this.lastUrl = e.url; });
     }
     LoginService.prototype.isLoggedIn = function () {
         return this.user !== undefined;
@@ -23,9 +29,16 @@ var LoginService = (function () {
         return this.http.post(MEAT_API + "/login", { email: email, password: password })
             .do(function (user) { return _this.user = user; });
     };
+    LoginService.prototype.logout = function () {
+        this.user = undefined;
+    };
+    LoginService.prototype.handleLogin = function (path) {
+        if (path === void 0) { path = this.lastUrl; }
+        this.router.navigate(['/login', btoa(path)]);
+    };
     LoginService = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [HttpClient])
+        __metadata("design:paramtypes", [HttpClient, Router])
     ], LoginService);
     return LoginService;
 }());
