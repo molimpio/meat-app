@@ -18,6 +18,8 @@ import { NotificationService } from "./messages/notification.service";
 import { LoginService } from "../security/login/login.service";
 import { LoggedInGuard } from "../security/loggedin.guard";
 import { LeaveOrderGuard } from "../order/leave-order.guard";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthInterceptor } from "../security/auth.interceptor";
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -27,7 +29,8 @@ var SharedModule = (function () {
             ngModule: SharedModule_1,
             providers: [ShoppingCartService, LoginService,
                 RestaurantsService, OrderService,
-                NotificationService, LoggedInGuard, LeaveOrderGuard]
+                NotificationService, LoggedInGuard, LeaveOrderGuard,
+                { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
         };
     };
     SharedModule = SharedModule_1 = __decorate([
