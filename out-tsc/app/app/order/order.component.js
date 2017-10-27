@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from "./order.service";
 import { OrderItem } from "./order.model";
+import 'rxjs/add/operator/do';
 var OrderComponent = (function () {
     function OrderComponent(orderService, router, formBuilder) {
         this.orderService = orderService;
@@ -64,11 +65,15 @@ var OrderComponent = (function () {
     OrderComponent.prototype.remove = function (item) {
         this.orderService.remove(item);
     };
+    OrderComponent.prototype.isOrderCompleted = function () {
+        return this.orderId !== undefined;
+    };
     OrderComponent.prototype.checkOrder = function (order) {
         var _this = this;
         order.orderItems = this.cartItems()
             .map(function (item) { return new OrderItem(item.quantity, item.menuItem.id); });
         this.orderService.checkOrder(order)
+            .do(function (orderId) { return _this.orderId = orderId; })
             .subscribe(function (orderId) {
             _this.router.navigate(['/order-summary']);
             _this.orderService.clear();

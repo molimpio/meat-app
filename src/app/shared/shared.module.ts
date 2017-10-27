@@ -8,16 +8,17 @@ import {RatingComponent} from './rating/rating.component'
 import {ShoppingCartService} from "../restaurant-detail/shopping-cart/shopping-cart.service";
 import {RestaurantsService} from "../restaurants/restaurants.service";
 import {OrderService} from "../order/order.service";
-import { SnackbarComponent } from './messages/snackbar/snackbar.component';
+import {SnackbarComponent} from './messages/snackbar/snackbar.component';
 import {NotificationService} from "./messages/notification.service";
 import {LoginService} from "../security/login/login.service";
 import {LoggedInGuard} from "../security/loggedin.guard"
+import {LeaveOrderGuard} from "../order/leave-order.guard";
 
 @NgModule({
   declarations: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent,
-            CommonModule, FormsModule, ReactiveFormsModule]
+    CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
@@ -25,7 +26,7 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [ShoppingCartService, LoginService,
         RestaurantsService, OrderService,
-        NotificationService, LoggedInGuard]
+        NotificationService, LoggedInGuard, LeaveOrderGuard]
     }
   }
 }
