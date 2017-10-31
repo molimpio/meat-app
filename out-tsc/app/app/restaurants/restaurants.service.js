@@ -21,7 +21,7 @@ var RestaurantsService = (function () {
         if (search) {
             params = new HttpParams().set('q', search);
         }
-        return this.http.get(MEAT_API + "/restaurants", { params: params });
+        return this.http.get(MEAT_API + "/restaurantss", { params: params });
     };
     RestaurantsService.prototype.restaurantById = function (id) {
         return this.http.get(MEAT_API + "/restaurants/" + id);

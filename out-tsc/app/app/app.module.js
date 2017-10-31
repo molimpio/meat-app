@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
+import { ApplicationErrorHandler } from "./app.error-handler";
 var AppModule = (function () {
     function AppModule() {
     }
@@ -54,7 +55,8 @@ var AppModule = (function () {
                 RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
             ],
             providers: [
-                { provide: LOCALE_ID, useValue: 'pt-BR' }
+                { provide: LOCALE_ID, useValue: 'pt-BR' },
+                { provide: ErrorHandler, useClass: ApplicationErrorHandler }
             ],
             bootstrap: [AppComponent]
         })
