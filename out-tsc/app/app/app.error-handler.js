@@ -17,38 +17,44 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationService } from "./shared/messages/notification.service";
 import { LoginService } from "./security/login/login.service";
 var ApplicationErrorHandler = (function (_super) {
     __extends(ApplicationErrorHandler, _super);
-    function ApplicationErrorHandler(ns, injector) {
+    function ApplicationErrorHandler(ns, injector, zone) {
         var _this = _super.call(this) || this;
         _this.ns = ns;
         _this.injector = injector;
+        _this.zone = zone;
         return _this;
     }
     ApplicationErrorHandler.prototype.handleError = function (errorResponse) {
+        var _this = this;
         if (errorResponse instanceof HttpErrorResponse) {
-            var message = errorResponse.error.message;
-            switch (errorResponse.status) {
-                case 401:
-                    this.injector.get(LoginService).handleLogin();
-                    break;
-                case 403:
-                    this.ns.notify(message || 'Não autorizado');
-                    break;
-                case 404:
-                    this.ns.notify(message || 'Recurso não encontrado!');
-                    break;
-            }
+            var message_1 = errorResponse.error.message;
+            this.zone.run(function () {
+                switch (errorResponse.status) {
+                    case 401:
+                        _this.injector.get(LoginService).handleLogin();
+                        break;
+                    case 403:
+                        _this.ns.notify(message_1 || 'Não autorizado');
+                        break;
+                    case 404:
+                        _this.ns.notify(message_1 || 'Recurso não encontrado!');
+                        break;
+                }
+            });
         }
         _super.prototype.handleError.call(this, errorResponse);
     };
     ApplicationErrorHandler = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [NotificationService, Injector])
+        __metadata("design:paramtypes", [NotificationService,
+            Injector,
+            NgZone])
     ], ApplicationErrorHandler);
     return ApplicationErrorHandler;
 }(ErrorHandler));
